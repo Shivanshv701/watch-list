@@ -1,0 +1,144 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Favourite Watchist API",
+        "description": "Watchist of Cities API developed in ExpressJS",
+        "version": "4.5"
+    },
+    "produces": [
+        "application/json"
+    ],
+    "host": "localhost:8002",
+    "basePath": "/api",
+    "securityDefinitions": {
+        "AuthToken": {
+            "type": "apiKey",
+            "name": "authorization",
+            "in": "header",
+            "description": "The token for authentication"
+        }
+    },
+    "paths": {
+        "/add": {
+            "post": {
+            
+                "x-swagger-router-controller": "controller",
+                "tags": [
+                    "Add cityname"
+                ],
+                "description": "Add city in Favourite",
+                "body":{
+                    "city":"city"
+                },
+                "parameters": [
+                    {
+                        "name":"city",
+                        "in":"body",
+                        "required":true,
+                        "type":"string",
+                        "description":"Add city to favourite"
+                    }
+                ],
+                "security": [
+                    {
+                        "AuthToken": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                        
+                    }
+                }
+            }
+        },
+        "/get": {
+            "get": {
+                "x-swagger-router-controller": "controller",
+                "tags": [
+                    "Cities in favourite"
+                ],
+                "description": "Get list of cities in favourite",
+                
+                "security": [
+                    {
+                        "AuthToken": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                        
+                    }
+                }
+            }
+        },
+        "/delete/:_id": {
+            "delete": {
+                "x-swagger-router-controller": "controller",
+                "tags": [
+                    "Delete by ID"
+                ],
+                "description": "Delete city from favourite by ID",
+                "parameters": [
+                    {
+                        "name":"_id",
+                        "in":"path",
+                        "required":true,
+                        "type":"string",
+                        "description":"Deete city from favourite"
+                    }
+                ],
+                "security": [
+                    {
+                        "AuthToken": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                        
+                    }
+                }
+            }
+        },
+        "definitions": {
+            "WatchlistModel": {
+                "required": [
+                    "_id",
+                    "email",
+                    "cityname",
+                    "temp",
+                    "max_temp",
+                    "min_temp",
+                    "phone"
+                ],
+                "properties": {
+                    "_id": {
+                        "type": "string",
+                        "uniqueItems": true
+                    },
+                    "email": {
+                        "type": "string",
+                        "uniqueItems": true
+                    },
+                    "cityname": {
+                        "type": "string"
+                    },
+                    "temp": {
+                        "type": "string"
+                    },
+                    "max_temp": {
+                        "type": "string"
+                    },
+                    "min_temp": {
+                        "type": "string"
+                    }
+                }
+            }
+    
+        }
+        
+    }
+    
+}
